@@ -7,7 +7,7 @@ const MyCourses = () => {
   return (
     <Container>
       <Controls>
-        <CreateCourse/>
+        <CreateCourse onSubmit={()=>console.log("foo")}/>
       </Controls>
       <Courses>
         <SimpleGrid spacing={4} minChildWidth="250px">

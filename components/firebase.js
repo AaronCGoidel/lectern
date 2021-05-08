@@ -9,3 +9,16 @@ var firebaseConfig = {
     appId: "1:217028493707:web:bfed67283292a9a4912f8e",
     measurementId: "G-44JVC6P1JJ"
 };
+
+// Initialize Firebase
+try {
+    firebase.initializeApp(firebaseConfig);
+  } catch (err) {
+    if (!/already exists/.test(err.message)) {
+      console.error("Firebase initialization error", err.stack);
+    }
+  }
+  
+  export const auth = firebase.auth();
+  export const db = firebase.firestore();
+  export default firebase;

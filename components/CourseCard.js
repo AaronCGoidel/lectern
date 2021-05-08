@@ -13,7 +13,7 @@ const CourseCard = (props) => {
         </Box>
         <HStack spacing={2} marginTop={2}>
           {props.tags.map((tag, i) => (
-            <Tag>{tag}</Tag>
+            <Tag key={i}>{tag}</Tag>
           ))}
         </HStack>
       </Box>

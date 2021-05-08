@@ -18,11 +18,16 @@ export const Controls = styled.div`
   flex-direction: column;
   flex: 1;
   min-width: 400px;
-  margin: 0 2rem 2rem 0;
-  padding-top: 2rem;
+  margin: 2rem 2rem 2rem 0;
   position: sticky;
   align-self: flex-start;
   top: 0;
+
+  @media (max-width: 840px) {
+    margin: 0;
+    padding: 0 3rem;
+    min-width: 100vw;
+  }
 `;
 export const Courses = styled.div`
   // grid-area: courses;
