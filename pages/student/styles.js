@@ -19,3 +19,7 @@ export const Controls = styled.div`
 export const Courses = styled.div`
     grid-area: courses;
 `;
+
+export const Hero = styled.div`
+    display: flex;
+`;
