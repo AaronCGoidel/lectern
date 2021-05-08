@@ -40,3 +40,5 @@ export const Courses = styled.div`
 
   padding-top: 2rem;
 `;
+
+export default Container;
