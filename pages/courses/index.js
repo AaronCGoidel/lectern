@@ -32,8 +32,8 @@ const FindClass = () => {
       .then((res) => {
         res.forEach((doc) => {
           const data = doc.data();
-          const id = doc.id
-          setCourses([...courses, {...data, id}]);
+          const id = doc.id;
+          setCourses((oldCourses) => [...oldCourses, { ...data, id }]);
         });
       })
       .catch((error) => {
@@ -54,10 +54,10 @@ const FindClass = () => {
     courseRef
       .get()
       .then((res) => {
-        setCourses([])
+        setCourses([]);
         res.forEach((doc) => {
           const data = doc.data();
-          setCourses([...courses, data]);
+          setCourses((oldCourses) => [...oldCourses, data]);
         });
       })
       .catch((error) => {

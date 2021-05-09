@@ -28,7 +28,7 @@ const MyCourses = () => {
       .then((res) => {
         res.forEach((doc) => {
           const data = doc.data();
-          setCourses([...courses, data]);
+          setCourses((oldCourses) => [...oldCourses, data]);
         });
       })
       .catch((error) => {
@@ -44,8 +44,8 @@ const MyCourses = () => {
       .add({ ...course, instructor: user, rating: { num: 0, total: 0 } })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
-        setCourses([
-          ...courses,
+        setCourses((oldCourses) => [
+          ...oldCourses,
           { ...course, instructor: user, rating: { num: 0, total: 0 } },
         ]);
       })
