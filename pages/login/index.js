@@ -10,7 +10,8 @@ import {
   Container,
 } from "./styles";
 import styled from "styled-components";
-import { useState } from "react";
+import React, {useState, useContext } from "react";
+import { LoginContext } from "../contexts/userContext";
 
 const Form = styled.form`
   background-color: white;
@@ -20,10 +21,12 @@ const Form = styled.form`
 
 
 
-async function authenticateUser(email, password, setError) {
+async function authenticateUser(email, password, setLogin) {
   try {
     const user = await auth.signInWithEmailAndPassword(email, password)
     console.log(user);
+    setLogin(true);
+    
   } catch (err) {
     alert(err.message);
   }
@@ -33,9 +36,10 @@ async function authenticateUser(email, password, setError) {
 export const LogIn = ({onSubmit}) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const [isLoggedIn, setLogin] = useContext(LoginContext)
 
   const handleSubmit = (event) => {
-    authenticateUser(email, password);
+    authenticateUser(email, password, setLogin);
     event.preventDefault();
   }
   return (

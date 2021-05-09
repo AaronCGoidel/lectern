@@ -14,8 +14,11 @@ import {
   Footer
 } from "./styles";
 
+
+
 export default function Home() {
   return (
+  
     <Container>
       <Head>
         <title>Lectern - Global Education</title>

@@ -1,4 +1,4 @@
-import {auth} from "../../components/firebase.js";
+import {auth, db} from "../../components/firebase.js";
 import {
   Heading,
   FormLabel,
@@ -11,7 +11,9 @@ import {
   Container,
 } from "./styles";
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { LoginContext } from "../contexts/userContext";
+ 
 
 const Form = styled.form`
   background-color: white;
@@ -19,23 +21,39 @@ const Form = styled.form`
   justify-self: center;
 `;
 
-async function authenticateUser(evt, email, password) {
+async function authenticateUser(event, enteredEmail, enteredPassword, enteredName, enteredType, setLogin) {
   try {
-    const user = await auth.createUserWithEmailAndPassword(email, password);
+    const user = await auth.createUserWithEmailAndPassword(enteredEmail, enteredPassword);
     console.log(user);
-    evt.preventDefault();
+    setLogin(true);
+    db.collection("users").doc(user).set({
+      name: enteredName,
+      email: enteredEmail,
+      type: enteredType,
+    })
+    .then(() => {
+      console.log("Document successfully written!");
+    })
+    .catch((error) => {
+      console.error("Error writing document: ", error);
+    });
+    event.preventDefault();
   } catch (err) {
     alert(err.message);
-  }
-}
+  };
+};
 
 export const SignUpPage = ({onSubmit}) => {
-
-  const [email, setEmail] = useState(null);
+  
   const [password, setPassword] = useState(null);
 
+  const [isLoggedIn, setLogin] = useContext(LoginContext);
+  const [type, setType] = useContext(LoginContext); // "student" or "instructor"
+  const [name, setName] = useContext(LoginContext);
+  const [email, setEmail] = useContext(LoginContext);
+
   const handleSubmit = (event) => {
-    authenticateUser(email, password);
+    authenticateUser(event, email, password, name, type, setLogin);
     event.preventDefault();
   };
 
@@ -44,6 +62,14 @@ export const SignUpPage = ({onSubmit}) => {
         <Form onSubmit={handleSubmit}>
         <Heading mb={4}>Sign Up</Heading>
 
+        <FormControl isRequired>
+            <FormLabel>Full Name</FormLabel>
+            <Input
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Enter Full Name"
+            mb={4}
+            />
+        </FormControl>
         <FormControl isRequired>
             <FormLabel>Email</FormLabel>
             <Input
@@ -67,7 +93,7 @@ export const SignUpPage = ({onSubmit}) => {
               colorScheme="teal"
               variant="outline"
               marginBottom={2}
-              onClick={e => authenticateUser(e, email, password)}
+              onClick={() => {setType("student")}}
               >
               Sign Up As a Student!
           </Button>
@@ -75,7 +101,7 @@ export const SignUpPage = ({onSubmit}) => {
               colorScheme="teal"
               variant="outline"
               marginBottom={2}
-              onClick={e => authenticateUser(e, email, password)}
+              onClick={() => {setType("instructor")}}
               >
               Sign Up As Tutor!
           </Button>
