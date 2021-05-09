@@ -6,6 +6,7 @@ import {
   Input,
   FormControl,
   Stack,
+  Box,
 } from "@chakra-ui/react";
 import { Container } from "./styles";
 import styled from "styled-components";
@@ -83,6 +84,7 @@ export const SignUpPage = ({ onSubmit }) => {
     <LoginContext.Consumer>
       {({ user, mutate }) => (
         <Container>
+          <Box boxShadow="md" p={10} rounded="md" backgroundColor={"white"}>
           <Form
             onSubmit={(e) => {
               e.preventDefault();
@@ -117,6 +119,7 @@ export const SignUpPage = ({ onSubmit }) => {
                 type="password"
                 placeholder="Enter password"
                 onChange={(e) => setPassword(e.target.value)}
+                mb={4}
               />
             </FormControl>
             <Stack>
@@ -144,6 +147,7 @@ export const SignUpPage = ({ onSubmit }) => {
               </Button>
             </Stack>
           </Form>
+          </Box>
         </Container>
       )}
     </LoginContext.Consumer>

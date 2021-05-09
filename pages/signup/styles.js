@@ -8,6 +8,7 @@ export const Container = styled.div`
     text-align: center;
     height: 100vh;
     width: 100vw;
+    background: linear-gradient(to right, #a8ff78, #78ffd6);
     h1 {
         font-size: 3rem;
         font-weight: bold;

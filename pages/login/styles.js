@@ -12,6 +12,7 @@ export const Container = styled.div`
         font-size: 3rem;
         font-weight: bold;
     }
+    background: linear-gradient(to right, #ef3b36, #ffffff);
 `;
 
 export default Container;

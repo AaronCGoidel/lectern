@@ -10,12 +10,20 @@ import {
 } from "@chakra-ui/react";
 import { FindCourse } from "../../components/CourseForm";
 import CourseCard from "../../components/CourseCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { LoginContext } from "../../contexts/userContext";
+import { useRouter } from "next/router";
 
 const FindClass = () => {
   const [ready, setReady] = useState(false);
+  const user = useContext(LoginContext);
+  const router = useRouter();
 
   useEffect(() => {
+    console.log(user)
+    if (!user.uid) {
+      router.push("/login");
+    }
     setReady(true);
   }, []);
 

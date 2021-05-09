@@ -2,13 +2,21 @@ import Head from "next/head";
 import { Container, Controls, Courses } from "./styles";
 import { CreateCourse } from "../../components/CourseForm";
 import CourseCard from "../../components/CourseCard";
-import { SimpleGrid, Spinner } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { SimpleGrid, Spinner, useRadio } from "@chakra-ui/react";
+import { useContext, useEffect, useState } from "react";
+import { LoginContext } from "../../contexts/userContext";
+import { useRouter } from "next/router";
 
 const MyCourses = () => {
   const [ready, setReady] = useState(false);
+  const user = useContext(LoginContext);
+  const router = useRouter();
 
   useEffect(() => {
+    console.log(user)
+    if (!user.uid) {
+      router.push("/login");
+    }
     setReady(true);
   }, []);
 
