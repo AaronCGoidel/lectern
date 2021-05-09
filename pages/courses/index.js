@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Container, Controls, Courses } from "./styles";
 import {
   Select,
@@ -19,6 +20,15 @@ const FindClass = () => {
   }, []);
 
   return (
+    <>
+    <Head>
+        <title>Courses | Lectern</title>
+        <meta
+          name="description"
+          content="Find an instructor"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
     <Container>
       <Controls>
         <FindCourse />
@@ -88,6 +98,7 @@ const FindClass = () => {
         )}
       </Courses>
     </Container>
+    </>
   );
 };
 
