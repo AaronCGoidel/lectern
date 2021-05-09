@@ -26,7 +26,7 @@ const Form = styled.form`
 
 export const CreateCourse = ({onSubmit}) => {
   const handleSubmit = (event) => {
-    onSubmit();
+    onSubmit({subject, level, link, title});
     event.preventDefault();
   };
 
@@ -72,10 +72,10 @@ export const CreateCourse = ({onSubmit}) => {
           placeholder="The level of this course"
           mb={4}
         >
-          <option value="primary">Primary School</option>
-          <option value="middle">Middle School</option>
-          <option value="high">High School</option>
-          <option value="uni">University</option>
+          <option value="primary school">Primary School</option>
+          <option value="middle school">Middle School</option>
+          <option value="high school">High School</option>
+          <option value="university">University</option>
         </Select>
       </FormControl>
 
@@ -104,12 +104,13 @@ export const CreateCourse = ({onSubmit}) => {
   );
 };
 
-export const FindCourse = () => {
+export const FindCourse = ({onSubmit}) => {
   const handleSubmit = (event) => {
+    onSubmit(subject, level)
     event.preventDefault();
   };
-  const [subject, setSubject] = useState(null);
-  const [level, setLevel] = useState(null);
+  const [subject, setSubject] = useState("");
+  const [level, setLevel] = useState("");
   return (
     <Form onSubmit={handleSubmit}>
       <Heading mb={4}>Let's find the perfect course for you</Heading>
@@ -135,10 +136,10 @@ export const FindCourse = () => {
         placeholder="What level are you looking to learn?"
         mb={4}
       >
-        <option value="primary">Primary School</option>
-        <option value="middle">Middle School</option>
-        <option value="high">High School</option>
-        <option value="uni">University</option>
+        <option value="primary school">Primary School</option>
+        <option value="middle school">Middle School</option>
+        <option value="high school">High School</option>
+        <option value="university">University</option>
       </Select>
       <Button onClick={handleSubmit}>Find Classes</Button>
     </Form>
