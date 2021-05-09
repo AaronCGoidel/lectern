@@ -1,8 +1,17 @@
 import styled from "styled-components";
-import { Tag, Box, Image, HStack, Avatar, Center } from "@chakra-ui/react";
+import {
+  Tag,
+  Box,
+  Image,
+  HStack,
+  Avatar,
+  Center,
+  LinkBox,
+  LinkOverlay,
+} from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
-const CourseCard = (props) => {
+const TrueCard = (props) => {
   return (
     <Box boxShadow="md" p="6" rounded="md" bg="white" maxW="sm">
       {!props.small && (
@@ -36,6 +45,22 @@ const CourseCard = (props) => {
         </Box>
       </Box>
     </Box>
+  );
+};
+
+const CourseCard = (props) => {
+  return (
+    <>
+      {props.enterable ? (
+        <LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
+          <LinkOverlay href={`/courses/${props.id}`}>
+            <TrueCard {...props} />
+          </LinkOverlay>
+        </LinkBox>
+      ) : (
+        <TrueCard {...props} />
+      )}
+    </>
   );
 };
 

@@ -1,19 +1,18 @@
-import {auth, db} from "../../components/firebase.js";
+import { auth, db } from "../../components/firebase.js";
 import {
   Heading,
   FormLabel,
   Button,
   Input,
   FormControl,
-  Stack
+  Stack,
 } from "@chakra-ui/react";
-import {
-  Container,
-} from "./styles";
+import { Container } from "./styles";
 import styled from "styled-components";
 import { useState, useContext } from "react";
-import { LoginContext } from "../contexts/userContext";
- 
+import { LoginContext } from "../../contexts/userContext.js";
+import { useRouter } from 'next/router'
+
 
 const Form = styled.form`
   background-color: white;
@@ -21,93 +20,133 @@ const Form = styled.form`
   justify-self: center;
 `;
 
-async function authenticateUser(event, enteredEmail, enteredPassword, enteredName, enteredType, setLogin) {
+async function authenticateUser(
+  event,
+  enteredEmail,
+  enteredPassword,
+  enteredName,
+  enteredType
+) {
   try {
-    const user = await auth.createUserWithEmailAndPassword(enteredEmail, enteredPassword);
-    console.log(user);
-    setLogin(true);
-    db.collection("users").doc(user).set({
-      name: enteredName,
-      email: enteredEmail,
-      type: enteredType,
-    })
-    .then(() => {
-      console.log("Document successfully written!");
-    })
-    .catch((error) => {
-      console.error("Error writing document: ", error);
-    });
-    event.preventDefault();
+    const user = await auth.createUserWithEmailAndPassword(
+      enteredEmail,
+      enteredPassword
+    );
+
+    return user;
   } catch (err) {
-    alert(err.message);
-  };
-};
+    console.error(err.message);
+  }
+}
 
-export const SignUpPage = ({onSubmit}) => {
-  
+export const SignUpPage = ({ onSubmit }) => {
   const [password, setPassword] = useState(null);
+  const router = useRouter()
 
-  const [isLoggedIn, setLogin] = useContext(LoginContext);
-  const [type, setType] = useContext(LoginContext); // "student" or "instructor"
-  const [name, setName] = useContext(LoginContext);
-  const [email, setEmail] = useContext(LoginContext);
+  const doRedirect = (type) => {
+    if(type === "student") {
+      router.push("courses")
+    }else{
+      router.push("instructor")
+    }
+  }
 
-  const handleSubmit = (event) => {
-    authenticateUser(event, email, password, name, type, setLogin);
+  const handleSubmit = async (event, user, mutate) => {
+    authenticateUser(event, user.email, password, user.name, user.type)
+      .then((authed) => {
+        
+        db.collection("users")
+          .doc(authed.user.uid)
+          .set({
+            name: user.name,
+            email: user.email,
+            type: user.type,
+          })
+          .then(() => {
+            console.log("Document successfully written!");
+            mutate.setUid(authed.user.uid);
+            doRedirect(user.type);
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+
+      })
+      .catch((err) => {
+        console.warn(err);
+      });
+
     event.preventDefault();
   };
 
   return (
-      <Container>
-        <Form onSubmit={handleSubmit}>
-        <Heading mb={4}>Sign Up</Heading>
+    <LoginContext.Consumer>
+      {({ user, mutate }) => (
+        <Container>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(e, user, mutate);
+            }}
+          >
+            <Heading mb={4}>Sign Up</Heading>
 
-        <FormControl isRequired>
-            <FormLabel>Full Name</FormLabel>
-            <Input
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter Full Name"
-            mb={4}
-            />
-        </FormControl>
-        <FormControl isRequired>
-            <FormLabel>Email</FormLabel>
-            <Input
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
-            mb={4}
-            />
-        </FormControl>
-        
-        <FormControl isRequired>
-            <FormLabel>Password</FormLabel>
-            <Input
+            <FormControl isRequired>
+              <FormLabel>Full Name</FormLabel>
+              <Input
+                onChange={(e) => {
+                  mutate.setName(e.target.value);
+                }}
+                placeholder="Enter Full Name"
+                mb={4}
+              />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel>Email</FormLabel>
+              <Input
+                onChange={(e) => mutate.setEmail(e.target.value)}
+                placeholder="Enter email"
+                mb={4}
+              />
+            </FormControl>
+
+            <FormControl isRequired>
+              <FormLabel>Password</FormLabel>
+              <Input
                 pr="4.5rem"
                 type="password"
                 placeholder="Enter password"
                 onChange={(e) => setPassword(e.target.value)}
-            />
-        </FormControl>
-        <Stack>          
-          <Button
-              colorScheme="teal"
-              variant="outline"
-              marginBottom={2}
-              onClick={() => {setType("student")}}
+              />
+            </FormControl>
+            <Stack>
+              <Button
+                colorScheme="teal"
+                variant="outline"
+                marginBottom={2}
+                onClick={(e) => {
+                  mutate.setType("student");
+                }}
+                type="submit"
               >
-              Sign Up As a Student!
-          </Button>
-          <Button
-              colorScheme="teal"
-              variant="outline"
-              marginBottom={2}
-              onClick={() => {setType("instructor")}}
+                Sign Up As a Student!
+              </Button>
+              <Button
+                colorScheme="teal"
+                variant="outline"
+                marginBottom={2}
+                onClick={(e) => {
+                  mutate.setType("instructor");
+                }}
+                type="submit"
               >
-              Sign Up As Tutor!
-          </Button>
-        </Stack>
-        </Form>
-    </Container>
+                Sign Up As Tutor!
+              </Button>
+            </Stack>
+          </Form>
+        </Container>
+      )}
+    </LoginContext.Consumer>
   );
 };
 export default SignUpPage;
