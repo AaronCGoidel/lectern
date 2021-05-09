@@ -46,9 +46,9 @@ const Hero = () => {
                 Start Learning
               </Button>
             </Link>
-            <Link href="/signup" _hover={{ textDecoration: "none" }}>
+            <Link href="/login" _hover={{ textDecoration: "none" }}>
               <Button size={"lg"} px={6} colorScheme={"yellow"}>
-                Start Teaching
+                Login
               </Button>
             </Link>
           </Stack>
