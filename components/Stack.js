@@ -37,7 +37,7 @@ const TechStack = () => {
   return (
     <Container maxW={"7xl"} py={12}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
-        <Flex>
+        <Flex alignItems="flex-start">
           <Image rounded={"md"} alt={"ethereum blockchain illustration"} src={"images/eth.png"} />
         </Flex>
         <Stack spacing={4}>

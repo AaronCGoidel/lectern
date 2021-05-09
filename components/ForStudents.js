@@ -31,7 +31,7 @@ const ForStudents = () => {
             Learn With Us →{" "}
           </a>
         </Stack>
-        <Flex>
+        <Flex alignItems="flex-start">
           <Image rounded={"md"} alt={"feature image"} src={"images/student.jpg"} />
         </Flex>
       </SimpleGrid>
