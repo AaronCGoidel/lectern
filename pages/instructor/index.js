@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Container, Controls, Courses } from "./styles";
 import { CreateCourse } from "../../components/CourseForm";
 import CourseCard from "../../components/CourseCard";
@@ -12,6 +13,15 @@ const MyCourses = () => {
   }, []);
 
   return (
+    <>
+    <Head>
+        <title>Manage Courses | Lectern</title>
+        <meta
+          name="description"
+          content="Find an instructor"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
     <Container>
       <Controls>
         <CreateCourse onSubmit={() => console.log("foo")} />
@@ -88,6 +98,7 @@ const MyCourses = () => {
         )}
       </Courses>
     </Container>
+    </>
   );
 };
 
