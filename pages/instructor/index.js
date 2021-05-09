@@ -28,7 +28,7 @@ const MyCourses = () => {
       .then((res) => {
         res.forEach((doc) => {
           const data = doc.data();
-          setCourses([ ...courses, data ]);
+          setCourses([...courses, data]);
         });
       })
       .catch((error) => {
@@ -43,7 +43,10 @@ const MyCourses = () => {
       .add({ ...course, instructor: user, rating: { num: 0, total: 0 } })
       .then((docRef) => {
         console.log("Document written with ID: ", docRef.id);
-        setCourses([...courses, { ...course, instructor: user, rating: { num: 0, total: 0 } }])
+        setCourses([
+          ...courses,
+          { ...course, instructor: user, rating: { num: 0, total: 0 } },
+        ]);
       })
       .catch((error) => {
         console.error("Error adding document: ", error);
@@ -52,7 +55,7 @@ const MyCourses = () => {
 
   const roundHalf = (num) => {
     return Math.round(num * 2) / 2;
-  }
+  };
 
   return (
     <>
@@ -70,7 +73,7 @@ const MyCourses = () => {
             <SimpleGrid spacing={4} minChildWidth="250px">
               {courses.map((course, i) => (
                 <CourseCard
-                key={i}
+                  key={i}
                   small
                   instructor={course.instructor.name}
                   tags={[course.subject, course.level]}
