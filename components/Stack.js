@@ -76,10 +76,12 @@ const TechStack = () => {
             />
           </Stack>
           <HStack>
-          <Link href="/signup" _hover={{ textDecoration: "none" }}>
+          <Link target="_blank" href="https://github.com/AaronCGoidel/lectern" _hover={{ textDecoration: "none" }}>
             <Button rightIcon={<SiGithub />}>Github</Button>
           </Link>
+          <Link target="_blank" href="https://devpost.com/software/lectern-hezyqc" _hover={{ textDecoration: "none" }}>
             <Button rightIcon={<HiOutlineExternalLink />}>DevPost</Button>
+          </Link>
           </HStack>
         </Stack>
       </SimpleGrid>

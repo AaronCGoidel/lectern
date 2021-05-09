@@ -11,6 +11,7 @@ import {
   useColorModeValue,
   HStack,
   Button,
+  Link
 } from "@chakra-ui/react";
 
 const ForStudents = () => {
@@ -27,9 +28,11 @@ const ForStudents = () => {
             learn and have their studies recognized by employers and higher
             learning institutions.
           </Text>
-          <a style={{ "font-size": "1.3rem", color: "#8C31F5" }}>
+          <Link href="/signup">
+          <Text style={{ "font-size": "1.3rem", color: "#8C31F5" }}>
             Learn With Us →{" "}
-          </a>
+          </Text>
+          </Link>
         </Stack>
         <Flex alignItems="flex-start">
           <Image rounded={"md"} alt={"feature image"} src={"images/student.jpg"} />
