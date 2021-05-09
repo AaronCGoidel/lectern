@@ -16,11 +16,10 @@ import { useRouter } from "next/router";
 
 const FindClass = () => {
   const [ready, setReady] = useState(false);
-  const user = useContext(LoginContext);
+  const { user } = useContext(LoginContext);
   const router = useRouter();
 
   useEffect(() => {
-    console.log(user)
     if (!user.uid) {
       router.push("/login");
     }
