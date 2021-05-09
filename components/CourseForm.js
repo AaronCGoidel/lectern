@@ -104,8 +104,9 @@ export const CreateCourse = ({onSubmit}) => {
   );
 };
 
-export const FindCourse = () => {
+export const FindCourse = ({onSubmit}) => {
   const handleSubmit = (event) => {
+    onSubmit(subject, level)
     event.preventDefault();
   };
   const [subject, setSubject] = useState(null);
