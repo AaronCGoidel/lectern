@@ -8,12 +8,10 @@ import {
   Button,
   Image,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
 
 
 const Hero = () => {
-  const router = useRouter();
   return (
     <Container maxW={"7xl"}>
       <Image
@@ -44,8 +42,7 @@ const Hero = () => {
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
           >
-            <Button size={"lg"} px={6} colorScheme={"purple"}
-                    onClick={router.push("login")}>
+            <Button size={"lg"} px={6} colorScheme={"purple"}>
               Start Learning
             </Button>
             <Button size={"lg"} px={6} colorScheme={"yellow"}>
