@@ -85,69 +85,70 @@ export const SignUpPage = ({ onSubmit }) => {
       {({ user, mutate }) => (
         <Container>
           <Box boxShadow="md" p={10} rounded="md" backgroundColor={"white"}>
-          <Form
-            onSubmit={(e) => {
-              e.preventDefault();
-              handleSubmit(e, user, mutate);
-            }}
-          >
-            <Heading mb={4}>Sign Up</Heading>
 
-            <FormControl isRequired>
-              <FormLabel>Full Name</FormLabel>
-              <Input
-                onChange={(e) => {
-                  mutate.setName(e.target.value);
-                }}
-                placeholder="Enter Full Name"
-                mb={4}
-              />
-            </FormControl>
-            <FormControl isRequired>
-              <FormLabel>Email</FormLabel>
-              <Input
-                onChange={(e) => mutate.setEmail(e.target.value)}
-                placeholder="Enter email"
-                mb={4}
-              />
-            </FormControl>
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSubmit(e, user, mutate);
+              }}
+            >
+              <Heading mb={4}>Sign Up</Heading>
 
-            <FormControl isRequired>
-              <FormLabel>Password</FormLabel>
-              <Input
-                pr="4.5rem"
-                type="password"
-                placeholder="Enter password"
-                onChange={(e) => setPassword(e.target.value)}
-                mb={4}
-              />
-            </FormControl>
-            <Stack>
-              <Button
-                colorScheme="teal"
-                variant="outline"
-                marginBottom={2}
-                onClick={(e) => {
-                  mutate.setType("student");
-                }}
-                type="submit"
-              >
-                Sign Up As a Student!
-              </Button>
-              <Button
-                colorScheme="teal"
-                variant="outline"
-                marginBottom={2}
-                onClick={(e) => {
-                  mutate.setType("instructor");
-                }}
-                type="submit"
-              >
-                Sign Up As Tutor!
-              </Button>
-            </Stack>
-          </Form>
+              <FormControl isRequired>
+                <FormLabel>Full Name</FormLabel>
+                <Input
+                  onChange={(e) => {
+                    mutate.setName(e.target.value);
+                  }}
+                  placeholder="Enter Full Name"
+                  mb={4}
+                />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Email</FormLabel>
+                <Input
+                  onChange={(e) => mutate.setEmail(e.target.value)}
+                  placeholder="Enter email"
+                  mb={4}
+                />
+              </FormControl>
+
+              <FormControl isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input
+                  pr="4.5rem"
+                  type="password"
+                  placeholder="Enter password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </FormControl>
+              <Stack>
+                <Button
+                  colorScheme="teal"
+                  variant="outline"
+                  marginBottom={2}
+                  onClick={(e) => {
+                    mutate.setType("student");
+                  }}
+                  type="submit"
+                >
+                  Sign Up As a Student!
+                </Button>
+                <Button
+                  colorScheme="teal"
+                  variant="outline"
+                  marginBottom={2}
+                  onClick={(e) => {
+                    mutate.setType("instructor");
+                  }}
+                  type="submit"
+                >
+                  Sign Up As Tutor!
+                </Button>
+              </Stack>
+            </Form>
           </Box>
+
         </Container>
       )}
     </LoginContext.Consumer>
