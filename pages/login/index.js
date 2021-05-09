@@ -10,8 +10,8 @@ import {
   Container,
 } from "./styles";
 import styled from "styled-components";
-import React, {useState, useContext } from "react";
-import { LoginContext } from "../contexts/userContext";
+import React, {useState, useContext, useEffect } from "react";
+import { LoginContext } from "../../contexts/userContext";
 
 const Form = styled.form`
   background-color: white;

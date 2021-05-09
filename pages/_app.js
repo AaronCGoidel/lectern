@@ -1,5 +1,5 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import LoginProvider from "./contexts/userContext";
+import LoginProvider from "../contexts/userContext";
 
 
 function MyApp({ Component, pageProps }) {
