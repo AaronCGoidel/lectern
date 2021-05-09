@@ -7,9 +7,8 @@ import {
   Text,
   Button,
   Image,
+  Link,
 } from "@chakra-ui/react";
-
-
 
 const Hero = () => {
   return (
@@ -35,19 +34,23 @@ const Hero = () => {
             <Text>Learning, gone borderless</Text>
           </Heading>
           <Text color={"gray.500"}>
-            Leveraging blockchain technology, we connect educators and pupils across the globe to take the
-            politics out of pedegogy.
+            Leveraging blockchain technology, we connect educators and pupils
+            across the globe to take the politics out of pedegogy.
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
           >
-            <Button size={"lg"} px={6} colorScheme={"purple"}>
-              Start Learning
-            </Button>
-            <Button size={"lg"} px={6} colorScheme={"yellow"}>
-              Start Teaching
-            </Button>
+            <Link href="/signup" _hover={{ textDecoration: "none" }}>
+              <Button size={"lg"} px={6} colorScheme={"purple"}>
+                Start Learning
+              </Button>
+            </Link>
+            <Link href="/signup" _hover={{ textDecoration: "none" }}>
+              <Button size={"lg"} px={6} colorScheme={"yellow"}>
+                Start Teaching
+              </Button>
+            </Link>
           </Stack>
         </Stack>
         <Flex
@@ -69,6 +72,6 @@ const Hero = () => {
       </Stack>
     </Container>
   );
-}
+};
 
 export default Hero;

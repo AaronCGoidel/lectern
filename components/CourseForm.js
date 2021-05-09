@@ -26,7 +26,7 @@ const Form = styled.form`
 
 export const CreateCourse = ({onSubmit}) => {
   const handleSubmit = (event) => {
-    onSubmit();
+    onSubmit({subject, level, link, title});
     event.preventDefault();
   };
 

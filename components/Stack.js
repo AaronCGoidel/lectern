@@ -11,6 +11,7 @@ import {
   useColorModeValue,
   HStack,
   Button,
+  Link
 } from "@chakra-ui/react";
 import { SiEthereum, SiReact, SiFirebase, SiGithub } from "react-icons/si";
 import { HiOutlineExternalLink } from "react-icons/hi";
@@ -75,7 +76,9 @@ const TechStack = () => {
             />
           </Stack>
           <HStack>
+          <Link href="/signup" _hover={{ textDecoration: "none" }}>
             <Button rightIcon={<SiGithub />}>Github</Button>
+          </Link>
             <Button rightIcon={<HiOutlineExternalLink />}>DevPost</Button>
           </HStack>
         </Stack>

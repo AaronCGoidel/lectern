@@ -39,6 +39,7 @@ const MyCourses = () => {
   }, []);
 
   const handleNewCourse = (course) => {
+    console.log(course);
     db.collection("courses")
       .add({ ...course, instructor: user, rating: { num: 0, total: 0 } })
       .then((docRef) => {
