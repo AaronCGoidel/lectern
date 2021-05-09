@@ -32,7 +32,8 @@ const FindClass = () => {
       .then((res) => {
         res.forEach((doc) => {
           const data = doc.data();
-          setCourses([...courses, data]);
+          const id = doc.id
+          setCourses([...courses, {...data, id}]);
         });
       })
       .catch((error) => {
@@ -85,11 +86,13 @@ const FindClass = () => {
               {courses.map((course, i) => (
                 <CourseCard
                   key={i}
+                  enterable
                   instructor={course.instructor.name}
                   tags={[course.subject, course.level]}
                   title={course.title}
                   rating={roundHalf(course.rating.total / course.rating.num)}
                   revCount={course.rating.num}
+                  id={course.id}
                 />
               ))}
             </SimpleGrid>

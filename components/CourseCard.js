@@ -52,11 +52,9 @@ const CourseCard = (props) => {
   return (
     <>
       {props.enterable ? (
-        <LinkBox as="article" maxW="sm" p="5" borderWidth="1px" rounded="md">
           <LinkOverlay href={`/courses/${props.id}`}>
             <TrueCard {...props} />
           </LinkOverlay>
-        </LinkBox>
       ) : (
         <TrueCard {...props} />
       )}

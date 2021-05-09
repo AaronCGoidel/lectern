@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const { CourierClient } = require("@trycourier/courier");
+const courier = CourierClient({ authorizationToken: functions.config().courier.key, });
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -9,9 +10,7 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
   response.send("Hello from Firebase!");
 });
 
-exports.sendMail = functions.https.onRequest((request, response) => {
-  const courier = CourierClient({ authorizationToken: functions.config().courier.key, });
-
+exports.sendMail = functions.https.onRequest(async (request, response) => {
   courier
     .send({
       eventId: "FNVN5RJ9MV4Z5MHNK6P3G7A84A58",
