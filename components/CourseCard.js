@@ -1,11 +1,15 @@
 import styled from "styled-components";
-import { Tag, Box, Image, HStack } from "@chakra-ui/react";
+import { Tag, Box, Image, HStack, Avatar, Center } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
 
 const CourseCard = (props) => {
   return (
     <Box boxShadow="md" p="6" rounded="md" bg="white" maxW="sm">
-      <Image src={props.img} alt={""} />
+      {!props.small && (
+        <Center>
+          <Avatar size="2xl" name={props.instructor} src={props.img} />
+        </Center>
+      )}
       <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
         <Box>{props.title}</Box>
         <Box as="span" color="gray.600">

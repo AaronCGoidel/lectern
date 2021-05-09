@@ -19,10 +19,11 @@ const Form = styled.form`
   justify-self: center;
 `;
 
-async function authenticateUser(email, password) {
+async function authenticateUser(evt, email, password) {
   try {
     const user = await auth.createUserWithEmailAndPassword(email, password);
     console.log(user);
+    evt.preventDefault();
   } catch (err) {
     alert(err.message);
   }
@@ -66,8 +67,7 @@ export const SignUpPage = ({onSubmit}) => {
               colorScheme="teal"
               variant="outline"
               marginBottom={2}
-              type="submit"
-              onClick={() => authenticateUser(email, password)}
+              onClick={e => authenticateUser(e, email, password)}
               >
               Sign Up As a Student!
           </Button>
@@ -75,8 +75,7 @@ export const SignUpPage = ({onSubmit}) => {
               colorScheme="teal"
               variant="outline"
               marginBottom={2}
-              type="submit"
-              onClick={() => authenticateUser(email, password)}
+              onClick={e => authenticateUser(e, email, password)}
               >
               Sign Up As Tutor!
           </Button>

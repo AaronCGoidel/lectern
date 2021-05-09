@@ -25,6 +25,8 @@ export const Controls = styled.div`
   align-self: flex-start;
   top: 0;
 
+  z-index: 1000;
+
   @media (max-width: 840px) {
     margin: 0;
     // padding: 0 3rem;

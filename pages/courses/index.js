@@ -5,75 +5,87 @@ import {
   FormLabel,
   Button,
   SimpleGrid,
+  Spinner
 } from "@chakra-ui/react";
-import {FindCourse} from "../../components/CourseForm"
+import { FindCourse } from "../../components/CourseForm";
 import CourseCard from "../../components/CourseCard";
+import { useEffect, useState } from "react";
 
 const FindClass = () => {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
+
   return (
     <Container>
       <Controls>
-        <FindCourse/>
+        <FindCourse />
       </Controls>
       <Courses>
-        <SimpleGrid spacing={4} minChildWidth="250px">
-          <CourseCard
-            instructor={"Ethan Lam"}
-            tags={["mathematics", "advanced"]}
-            img={"/images/HeroImg.png"}
-            title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
-            rating={4}
-            revCount={10}
-          />
-          <CourseCard
-            instructor={"Ethan Lam"}
-            tags={["mathematics", "advanced"]}
-            img={"/images/HeroImg.png"}
-            title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
-            rating={4}
-            revCount={10}
-          />
-          <CourseCard
-            instructor={"Ethan Lam"}
-            tags={["mathematics", "advanced"]}
-            img={"/images/HeroImg.png"}
-            title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
-            rating={4}
-            revCount={10}
-          />
-          <CourseCard
-            instructor={"Ethan Lam"}
-            tags={["mathematics", "advanced"]}
-            img={"/images/HeroImg.png"}
-            title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
-            rating={4}
-            revCount={10}
-          />
-          <CourseCard
-            instructor={"Ethan Lam"}
-            tags={["mathematics", "advanced"]}
-            img={"/images/HeroImg.png"}
-            title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
-            rating={4}
-            revCount={10}
-          />
-          <CourseCard
-            instructor={"Ethan Lam"}
-            tags={["mathematics", "advanced"]}
-            img={"/images/HeroImg.png"}
-            title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
-            rating={4}
-            revCount={10}
-          />
-          <CourseCard
-            instructor={"Ethan Lam"}
-            tags={["mathematics", "advanced"]}
-            img={"/images/HeroImg.png"}
-            title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
-            rating={4}
-            revCount={10}
-          />
-        </SimpleGrid>
+        {ready ? (
+          <SimpleGrid spacing={4} minChildWidth="250px">
+            <CourseCard
+              instructor={"Ethan Lam"}
+              tags={["mathematics", "advanced"]}
+              img={"/images/HeroImg.png"}
+              title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
+              rating={4}
+              revCount={10}
+            />
+            <CourseCard
+              instructor={"Ethan Lam"}
+              tags={["mathematics", "advanced"]}
+              img={"/images/HeroImg.png"}
+              title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
+              rating={4}
+              revCount={10}
+            />
+            <CourseCard
+              instructor={"Ethan Lam"}
+              tags={["mathematics", "advanced"]}
+              img={"/images/HeroImg.png"}
+              title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
+              rating={4}
+              revCount={10}
+            />
+            <CourseCard
+              instructor={"Ethan Lam"}
+              tags={["mathematics", "advanced"]}
+              img={"/images/HeroImg.png"}
+              title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
+              rating={4}
+              revCount={10}
+            />
+            <CourseCard
+              instructor={"Ethan Lam"}
+              tags={["mathematics", "advanced"]}
+              img={"/images/HeroImg.png"}
+              title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
+              rating={4}
+              revCount={10}
+            />
+            <CourseCard
+              instructor={"Ethan Lam"}
+              tags={["mathematics", "advanced"]}
+              img={"/images/HeroImg.png"}
+              title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
+              rating={4}
+              revCount={10}
+            />
+            <CourseCard
+              instructor={"Ethan Lam"}
+              tags={["mathematics", "advanced"]}
+              img={"/images/HeroImg.png"}
+              title={"foo bar hhhhhhhhhhiuhiuhiuhuidhaosiuhdoaisuhdioahsu"}
+              rating={4}
+              revCount={10}
+            />
+          </SimpleGrid>
+        ) : (
+          <Spinner size="xl" />
+        )}
       </Courses>
     </Container>
   );
