@@ -4,7 +4,7 @@ import { StarIcon } from "@chakra-ui/icons";
 
 const CourseCard = (props) => {
   return (
-    <Box boxShadow="base" p="6" rounded="md" bg="white" maxW="sm">
+    <Box boxShadow="md" p="6" rounded="md" bg="white" maxW="sm">
       <Image src={props.img} alt={""} />
       <Box mt="1" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>
         <Box>{props.title}</Box>

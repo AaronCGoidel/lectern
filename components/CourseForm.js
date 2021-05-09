@@ -14,6 +14,12 @@ import { useState } from "react";
 
 const Form = styled.form`
   background-color: white;
+  border-radius: 6px;
+  padding: 1rem;
+
+  @media (max-width: 840px) {
+    width: 100vw;
+  }
 `;
 
 export const CreateCourse = ({onSubmit}) => {

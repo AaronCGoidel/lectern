@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 100vw;
-    // height: 100vh;
+  min-height: 100vh;
   overflow: none;
 
   padding: 0 5rem;
@@ -11,6 +11,8 @@ export const Container = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
+  background: linear-gradient(to right, #d9a7c7, #fffcdc);
 `;
 
 export const Controls = styled.div`
@@ -25,7 +27,7 @@ export const Controls = styled.div`
 
   @media (max-width: 840px) {
     margin: 0;
-    padding: 0 3rem;
+    // padding: 0 3rem;
     min-width: 100vw;
   }
 `;
@@ -38,3 +40,5 @@ export const Courses = styled.div`
 
   padding-top: 2rem;
 `;
+
+export default Container;
