@@ -4,6 +4,8 @@ import Hero from "../components/Hero";
 import TechStack from "../components/Stack";
 import ForTeachers from "../components/ForTeachers"
 
+
+
 const Landing = () => {
   return (
     <>
@@ -16,6 +18,7 @@ const Landing = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Hero />
+              
       <TechStack />
       <ForStudents />
       <ForTeachers />
